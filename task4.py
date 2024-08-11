@@ -79,12 +79,11 @@ class Triangle(Shape):
 
     @staticmethod
     def determine_name(side1, side2, side3):
-        if side1 == side2 == side3:
-            name = "Equilateral Triangle"
-        elif side1 == side2 or side2 == side3 or side1 == side3:
-            name = "Isosceles Triangle"
-        else:
-            name = "Scalene Triangle"
+        name = (
+            "Equilateral Triangle" if side1 == side2 == side3 else
+            "Isosceles Triangle" if side1 == side2 or side2 == side3 or side1 == side3 else
+            "Scalene Triangle"
+        )
         logging.debug(f"Determined name of Triangle: {name}")
         return name
 
