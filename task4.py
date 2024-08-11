@@ -73,13 +73,9 @@ class Triangle(Shape):
     @property
     def surface_area(self):
         s = self.perimeter / 2
-        try:
-            surface_area = math.sqrt(s * (s - self.side1) * (s - self.side2) * (s - self.side3))
-            logging.debug(f"Calculated surface area of Triangle: {surface_area}")
-            return surface_area
-        except ValueError as e:
-            logging.error(f"Error calculating surface area of Triangle: {e}")
-            raise
+        surface_area = math.sqrt(s * (s - self.side1) * (s - self.side2) * (s - self.side3))
+        logging.debug(f"Calculated surface area of Triangle: {surface_area}")
+        return surface_area
 
     @staticmethod
     def determine_name(side1, side2, side3):
