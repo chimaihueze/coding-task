@@ -53,25 +53,18 @@ THIS CHUNK GUIDES WHAT HAPPENS IF THE CSV FILE ALREADY EXISTS
 if os.path.exists(file_name):
     logging.debug(f'File {file_name} already exists.')
     while True:
-        user_input = input(
-            f"File '{file_name}' already exists. Enter '1' to overwrite or '0' to keep the existing file: ").strip()
-        logging.debug(f'User input received: {user_input}')
+        user_input = input(f"File '{file_name}' already exists. Overwrite? (y/n): ").strip().lower()
 
-        if user_input == "1":
-            try:
-                os.remove(file_name)
-                logging.debug(f"Existing file '{file_name}' has been overwritten.")
-                break
-            except Exception as e:
-                logging.error(f"Error removing file '{file_name}': {e}")
-                raise
-        elif user_input == "0":
-            logging.debug(f"Existing file '{file_name}' was not overwritten. User chose to keep existing file.")
-            print(f"Existing file '{file_name}' was not overwritten. Change the name of your file and try again!")
+        if user_input == 'y':
+            os.remove(file_name)
+            logging.debug(f"Existing file '{file_name}' has been overwritten.")
+            break
+        elif user_input == 'n':
+            logging.debug(f"Existing file '{file_name}' was not overwritten.")
+            print(f"Existing file '{file_name}' was not overwritten. Change the name of your file and try again.")
             exit()
         else:
-            logging.warning("Invalid input provided for file overwrite decision.")
-            print("Invalid input. Please enter '1' to overwrite or '0' to keep existing file.")
+            print("Invalid input. Please enter 'y' to overwrite or 'n' to keep existing file.")
 else:
     logging.debug(f'File {file_name} does not exist. Proceeding to create the file.')
 
