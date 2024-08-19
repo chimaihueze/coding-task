@@ -92,8 +92,24 @@ class Rectangle(Shape):
     def __init__(self, width, height):
         logging.debug(f"Initializing Rectangle with width: {width}, height: {height}")
         super().__init__("Rectangle")
-        self.width = width
-        self.height = height
+        self.__width = width
+        self.__height = height
+
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        self.__width = value
+
+    @property
+    def height(self):
+        return self._height
+
+    @height.setter
+    def height(self, value):
+        self._height = value
 
     @property
     def perimeter(self):
